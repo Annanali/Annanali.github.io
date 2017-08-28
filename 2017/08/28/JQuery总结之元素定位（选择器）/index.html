@@ -1,0 +1,739 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript面试,jQuery," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="根据廖雪峰老师的教程和网络相关资料记录一下jQuery中的元素定位">
+<meta name="keywords" content="JavaScript面试,jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JQuery总结之元素定位（选择器）">
+<meta property="og:url" content="http://yoursite.com/2017/08/28/JQuery总结之元素定位（选择器）/index.html">
+<meta property="og:site_name" content="努力中的Annanali">
+<meta property="og:description" content="根据廖雪峰老师的教程和网络相关资料记录一下jQuery中的元素定位">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-28T15:36:35.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JQuery总结之元素定位（选择器）">
+<meta name="twitter:description" content="根据廖雪峰老师的教程和网络相关资料记录一下jQuery中的元素定位">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/28/JQuery总结之元素定位（选择器）/"/>
+
+
+
+
+
+  <title> JQuery总结之元素定位（选择器） | 努力中的Annanali </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">努力中的Annanali</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">有思念你的人在的地方  就是你的归处。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/JQuery总结之元素定位（选择器）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="35cm_annanali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="努力中的Annanali">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JQuery总结之元素定位（选择器）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T22:03:32+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><blockquote class="blockquote-center">根据廖雪峰老师的教程和网络相关资料记录一下jQuery中的元素定位</blockquote><br><a id="more"></a></p>
+<p>以下资料来自网络，仅作为记录。主要参考地址如下：<br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345004443979a29e0e0be054e75a652613f132f7f0b000" target="_blank" rel="external">https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345004443979a29e0e0be054e75a652613f132f7f0b000</a></p>
+
+<h5 id="简单选择（id，class，标签，属性）"><a href="#简单选择（id，class，标签，属性）" class="headerlink" title="简单选择（id，class，标签，属性）"></a>简单选择（id，class，标签，属性）</h5><p>（1）根据id查找<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//js语法</span></div><div class="line"><span class="keyword">var</span> findById = <span class="built_in">document</span>.getElementById(<span class="string">'id'</span>);</div><div class="line"></div><div class="line"><span class="comment">//jQuery语法</span></div><div class="line"><span class="keyword">var</span> findById = $(<span class="string">'#id'</span>);</div></pre></td></tr></table></figure></p>
+<p>js方式返回的是DOM对象，不存在的话就返回<code>null</code>。<br>jQuery方式返回的是jQuery对象，如<code>[&lt;div id=&quot;id&quot;&gt;...&lt;/div&gt;]</code>,不存在的话返回<code>[]</code>。</p>
+<p>（2）根据class查找<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//js语法</span></div><div class="line"><span class="keyword">var</span> findByClassName = <span class="built_in">document</span>.getElementsByClassName(<span class="string">'className'</span>);</div><div class="line"></div><div class="line"><span class="comment">//jQuery语法</span></div><div class="line"><span class="keyword">var</span> findByClassName = $(<span class="string">'.className'</span>);</div></pre></td></tr></table></figure></p>
+<p>通常返回一组节点，需要筛选，也可以对一组节点执行操作。</p>
+<p>（3）根据标签查找<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//js语法</span></div><div class="line"><span class="keyword">var</span> findByTagName = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);</div><div class="line"></div><div class="line"><span class="comment">//jQuery语法</span></div><div class="line"><span class="keyword">var</span> findByTagName = $(<span class="string">'div'</span>);</div></pre></td></tr></table></figure></p>
+<p>通常返回一组节点，需要筛选，也可以对一组节点执行操作。</p>
+<p>（4）根据属性查找（重点）<br>js方式目前不知道直接的操作，jQuery语法有很多种。</p>
+<p>#直接根据属性查<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 找出&lt;??? name="email"&gt;</span></div><div class="line"><span class="keyword">var</span> email = $(<span class="string">'[name=email]'</span>);</div><div class="line"><span class="comment">// 找出&lt;??? type="password"&gt;</span></div><div class="line"><span class="keyword">var</span> passwordInput = $(<span class="string">'[type=password]'</span>);</div><div class="line"><span class="comment">// 找出&lt;??? items="A B"&gt;</span></div><div class="line"><span class="keyword">var</span> a = $(<span class="string">'[items="A B"]'</span>);</div></pre></td></tr></table></figure></p>
+<p>#前缀后缀查找<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 找出所有name属性值以icon开头的DOM，例如: name="icon-1", name="icon-2</span></div><div class="line"><span class="keyword">var</span> icons = $(<span class="string">'[name^=icon]'</span>);</div><div class="line"><span class="comment">// 找出所有name属性值以with结尾的DOM，例如: name="startswith", name="endswith"</span></div><div class="line"><span class="keyword">var</span> names = $(<span class="string">'[name$=with]'</span>);</div><div class="line"><span class="comment">// 找出所有class包含至少一个以`icon-`开头的DOM，class="abc icon-home"</span></div><div class="line"><span class="keyword">var</span> icons = $(<span class="string">'[class^="icon-"]'</span>);</div></pre></td></tr></table></figure></p>
+<h5 id="组合选择"><a href="#组合选择" class="headerlink" title="组合选择"></a>组合选择</h5><p>组合选择的特点就是多种选择之间没有空格。<br>（1）同类查找方式组合<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 找有多个class的元素</span></div><div class="line"><span class="keyword">var</span> a = $(<span class="string">'.class1.class2'</span>);</div></pre></td></tr></table></figure></p>
+<p>同一元素不应该有两个id，也不会有两个标签。</p>
+<p>（2）标签和属性、类组合<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 要求是input元素并且name=email</span></div><div class="line"><span class="keyword">var</span> email = $(<span class="string">'input[name=email]'</span>);</div><div class="line"><span class="comment">// p标签且class有red</span></div><div class="line"><span class="keyword">var</span> a = $(p.red);</div></pre></td></tr></table></figure></p>
+<h5 id="多项选择"><a href="#多项选择" class="headerlink" title="多项选择"></a>多项选择</h5><p>多项选择的特点就是多种选择之间有逗号，表示多种选择满足其一都符合条件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// p和div都要</span></div><div class="line"><span class="keyword">var</span> a = $(<span class="string">'p,div'</span>);</div><div class="line"><span class="comment">// class包含red的tr和div都要</span></div><div class="line"><span class="keyword">var</span> b = $(<span class="string">'tr.red,div.red'</span>);</div><div class="line"><span class="comment">//name为name和email的都选出来</span></div><div class="line"><span class="keyword">var</span> c = $(<span class="string">'input[name="name"],input[name="email"]'</span>);</div></pre></td></tr></table></figure></p>
+<h5 id="层级选择"><a href="#层级选择" class="headerlink" title="层级选择"></a>层级选择</h5><p>层级选择的特点就是多种选择之间用空格隔开，第二层不一定要是第一层的直接孩子，只要第一层是第二层的祖先即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 选择ul下的所有li节点</span></div><div class="line"><span class="keyword">var</span> a = $(<span class="string">'ul li'</span>);</div><div class="line"><span class="comment">// 选择ul下的所有li节点里的所有p节点</span></div><div class="line"><span class="keyword">var</span> b = $(<span class="string">'ul li p'</span>);</div><div class="line"><span class="comment">//表单名字为myForm里的所有input节点</span></div><div class="line"><span class="keyword">var</span> c = $(<span class="string">'form[name=myForm] input'</span>);</div></pre></td></tr></table></figure></p>
+<h5 id="子选择器和过滤器"><a href="#子选择器和过滤器" class="headerlink" title="子选择器和过滤器"></a>子选择器和过滤器</h5><p>（1）子选择器<br>子选择器的特点是多种选择之间用”&gt;”连接，两个选择之间要有直接的父子关系。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 可以选择ul所有不跨越任何节点到的li，要是&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;这样的格式</span></div><div class="line"><span class="keyword">var</span> a = $(<span class="string">'ul&gt;li'</span>);</div></pre></td></tr></table></figure></p>
+<p>（2）过滤器<br>过滤器一般不单独使用，它通常附加在选择器上，帮助我们更精确地定位元素，当然也可以直接使用。</p>
+<p>#找某个元素的孩子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> firstChild = $(<span class="string">'ul li:first-child'</span>);</div><div class="line"><span class="keyword">var</span> lastChild = $(<span class="string">'ul li:last-child'</span>);</div><div class="line"><span class="keyword">var</span> nChild = $(<span class="string">'ul li:nth-child(n)'</span>);</div><div class="line"><span class="keyword">var</span> evenChild = $(<span class="string">'ul li:nth-child(even)'</span>);</div><div class="line"><span class="keyword">var</span> oddChild = $(<span class="string">'ul li:nth-child(odd)'</span>);</div></pre></td></tr></table></figure></p>
+<p>#一些特殊选择器，主要针对表单<br><code>:input</code>：可以选择<code>&lt;input&gt;，&lt;textarea&gt;，&lt;select&gt;和&lt;button&gt;</code>；<br><code>:file</code>：可以选择<code>&lt;input type=&quot;file&quot;&gt;，和input[type=file]</code>一样；<br><code>:checkbox</code>：可以选择复选框，和<code>input[type=checkbox]</code>一样；<br><code>:radio</code>：可以选择单选框，和<code>input[type=radio]</code>一样；<br><code>:focus</code>：可以选择当前输入焦点的元素，例如把光标放到一个<code>&lt;input&gt;</code>上，用<code>$(&#39;input:focus&#39;)</code>就可以选出；<br><code>:checked</code>：选择当前勾上的单选框和复选框，用这个选择器可以立刻获得用户选择的项目，如<code>$(&#39;input[type=radio]:checked&#39;)</code>；<br><code>:enabled</code>：可以选择可以正常输入的<code>&lt;input&gt;、&lt;select&gt;</code>等，也就是没有灰掉的输入。<br><code>:disabled</code>：和:enabled正好相反，选择那些不能输入的。<br><code>:visible</code>：选出可见的。<br><code>:hidden</code>：选出隐藏的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//选出id为test-form里特殊选择器input中不是button的，即选择&lt;input&gt;，&lt;textarea&gt;，&lt;select&gt;</span></div><div class="line"><span class="keyword">var</span> a = $(<span class="string">'#test-form :input:not(button)'</span>);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript面试/" rel="tag"># JavaScript面试</a>
+          
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/27/JavaScript中的回调函数/" rel="next" title="JavaScript中的回调函数">
+                <i class="fa fa-chevron-left"></i> JavaScript中的回调函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="35cm_annanali" />
+          <p class="site-author-name" itemprop="name">35cm_annanali</p>
+           
+              <p class="site-description motion-element" itemprop="description">一天捕鱼四天晒网的咸鱼离。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Annanali" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5996058516" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">35cm_annanali</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
