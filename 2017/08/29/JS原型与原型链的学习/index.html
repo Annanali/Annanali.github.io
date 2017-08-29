@@ -1,0 +1,721 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript面试,JavaScript原型," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="JavaScript原型与原型链的学习总结">
+<meta name="keywords" content="JavaScript面试,JavaScript原型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS原型与原型链的学习">
+<meta property="og:url" content="http://yoursite.com/2017/08/29/JS原型与原型链的学习/index.html">
+<meta property="og:site_name" content="努力中的Annanali">
+<meta property="og:description" content="JavaScript原型与原型链的学习总结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-29T17:24:44.430Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS原型与原型链的学习">
+<meta name="twitter:description" content="JavaScript原型与原型链的学习总结">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/29/JS原型与原型链的学习/"/>
+
+
+
+
+
+  <title> JS原型与原型链的学习 | 努力中的Annanali </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">努力中的Annanali</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">有思念你的人在的地方  就是你的归处。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/JS原型与原型链的学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="35cm_annanali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="努力中的Annanali">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JS原型与原型链的学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T23:30:37+08:00">
+                2017-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><blockquote class="blockquote-center">JavaScript原型与原型链的学习总结</blockquote><br><a id="more"></a></p>
+<p></p><p>本文的大部分理解来自以下三篇文章和相关实践。这里仅作记录，希望日后能有更深刻的理解。</p><br>最详尽的 JS 原型与原型链终极详解，没有「可能是」。（一）<br><a href="http://www.jianshu.com/p/dee9f8b14771" target="_blank" rel="external">http://www.jianshu.com/p/dee9f8b14771</a><br>最详尽的 JS 原型与原型链终极详解，没有「可能是」。（二）<br><a href="http://www.jianshu.com/p/652991a67186" target="_blank" rel="external">http://www.jianshu.com/p/652991a67186</a><br>最详尽的 JS 原型与原型链终极详解，没有「可能是」。（三）<br><a href="http://www.jianshu.com/p/a4e1e7b6f4f8" target="_blank" rel="external">http://www.jianshu.com/p/a4e1e7b6f4f8</a><p></p>
+<p>开头废话：看了几个小时的原型与原型链终于稍微有一点理解，也是蛮不容易的，必须要写一篇博客算是重温也是记录吧w。</p>
+<h4 id="一、普通对象与函数对象"><a href="#一、普通对象与函数对象" class="headerlink" title="一、普通对象与函数对象"></a>一、普通对象与函数对象</h4><p>JS中的对象分为普通对象和函数对象。<br>普通对象（以下三类）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//直接赋值的对象</span></div><div class="line"><span class="keyword">var</span> obj1 = &#123;&#125;;</div><div class="line"><span class="comment">//通过Object初始化的</span></div><div class="line"><span class="keyword">var</span> obj2 = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line"><span class="comment">//通过构造函数构造的，f1是一个函数</span></div><div class="line"><span class="keyword">var</span> obj3 = <span class="keyword">new</span> f1();</div></pre></td></tr></table></figure></p>
+<p>函数对象（以下三类）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//直接声明的一个函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"><span class="comment">//通过Function初始化的</span></div><div class="line"><span class="keyword">var</span> f2 = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'a1'</span>,<span class="string">'console.log(a1)'</span>);</div><div class="line"><span class="comment">//匿名函数赋值的</span></div><div class="line"><span class="keyword">var</span> f3 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p>总结：<br>（1）函数对象一般是指通过new Function()创建的，上面三种方式其实说到底都是这样创建的。<br>（2）<u>这里要注意，可以看出，<strong>Funcition</strong>和<strong>Object</strong>也是函数，因为他们也是通过new Function()创建的，所以他们也是函数对象。</u><br>（3）typeof 函数对象 == function。<br>（4）typeof 普通对象 == Object。</p>
+<h4 id="二、构造函数和原型对象"><a href="#二、构造函数和原型对象" class="headerlink" title="二、构造函数和原型对象"></a>二、构造函数和原型对象</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">"hsq"</span>,<span class="number">17</span>);</div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">"xxx"</span>,<span class="number">18</span>);</div></pre></td></tr></table></figure>
+<p>总结：<br>（1）这里的Person就是一个构造函数，它也是一个函数对象。<br>（2）p1和p2都是Person的实例，他们都有一个属性<code>constructor</code>(这是默认设置的)，这一属性指向他们的构造函数，即<code>p1.constructor == p2.constructor == Person</code>。</p>
+<h5 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h5><p>总结：<br>（1）在JS中，每当定义一个函数的时候（即每当创建一个函数对象的时候），会同时创建一个<strong>普通对象</strong>，作为这个函数的<strong>原型对象</strong>。我们创建的这个函数对象有一个<code>prototype</code>属性，这一属性就指向这个原型对象。<br><u>注意：只有函数对象才有<code>prototype</code>属性。</u><br>（2）在默认情况下，所有的原型对象都会自动获得一个<code>constructor</code>属性，这个属性指向prototype属性所在的函数。<br>（3）假设Person是一个构造函数，p1是它的实例，有：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Person.prototype.constructor == Person</div><div class="line"><span class="comment">//前面提到的</span></div><div class="line">p1.constructor == Person</div></pre></td></tr></table></figure></p>
+<p>则其实可以理解为：Person创建的时候，创建了一个它的实例对象并赋值给它的 prototype（因为实例的<code>constructor</code>属性指向了构造它的函数），也就是说：<u>原型对象（Person.prototype）是构造函数（Person）的一个实例</u>。<br>（4）原型对象主要用于继承，可以给原型对象编写相关方法，让构造函数构造出的实例都能享有同一份这样的方法，而不是每个实例各一份。</p>
+<h5 id="特别要说明的Function这一函数的prototype"><a href="#特别要说明的Function这一函数的prototype" class="headerlink" title="特别要说明的Function这一函数的prototype"></a>特别要说明的Function这一函数的prototype</h5><p>其他函数的原型对象都是普通对象，但是<code>Function.prototype</code>的原型是一个函数对象，因为根据前面的说法，原型对象是构造函数的一个实例，而Function这个函数还是Funcition构造的，通过Funcition构造的都是函数对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> <span class="built_in">Function</span>.prototype <span class="comment">// Function</span></div><div class="line"><span class="keyword">typeof</span> <span class="built_in">Function</span>.prototype.prototype <span class="comment">//undefined</span></div></pre></td></tr></table></figure></p>
+<h4 id="三、-proto"><a href="#三、-proto" class="headerlink" title="三、__proto__"></a>三、__proto__</h4><p>总结：<br>（1）在JS中，只要创建一个对象，都有一个<code>__proto__</code>的内置属性，用于指向创建它的构造函数的原型对象。<br>（2）假设p1是Person的实例，就有<code>p1.__proto__ == Person.prototype</code>，这时候p1是一个普通对象。<br>（3）所有函数对象的<code>__proto__</code>都指向<code>Function.prototype</code>，它是一个空函数。例如Person，有<code>Person.__proto__ == Function.prototype</code>，因为Person的构造函数其实是Function。<br>（4）像Array，Object这些都是构造函数，所以有：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> <span class="built_in">Object</span> <span class="comment">// "function"</span></div><div class="line"><span class="keyword">typeof</span> <span class="built_in">Array</span> <span class="comment">//"function"</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">a.constructor === <span class="built_in">Object</span>;</div><div class="line">a.__proto__ === <span class="built_in">Object</span>.prototype;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">b.constructor === <span class="built_in">Array</span>;</div><div class="line">b.__proto__ === <span class="built_in">Array</span>.prototype;</div></pre></td></tr></table></figure></p>
+<p>（5）难理解和需要记住的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 因为Object是一个函数，由Funcition创建，构造函数的原型对象就是Function.prototype</span></div><div class="line"><span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype</div><div class="line"><span class="comment">// Person.prototype 是一个普通对象，它的构造函数是Object</span></div><div class="line">Person.prototype.__proto__ === <span class="built_in">Object</span>.prototype</div><div class="line"><span class="comment">// 原型链顶端，很特殊</span></div><div class="line"><span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span></div></pre></td></tr></table></figure></p>
+<p>（6）JavaScript中有内置(build-in)构造器/对象共计12个，有：<br>（a）Number，Boolen，String，Object，Function，Array，RegExp，Error，Date，它们的<code>__proto__</code>等于<code>Function.prototype</code>。<br>（b）Global不能直接访问。<br>（c）Arguments仅在函数调用时由JS引擎创建。<br>（d）Math，JSON是以对象形式存在的，无需new。它们的<code>__proto__</code>等于<code>Object.prototype</code>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript面试/" rel="tag"># JavaScript面试</a>
+          
+            <a href="/tags/JavaScript原型/" rel="tag"># JavaScript原型</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/28/CSS选择器和优先级相关记录/" rel="next" title="CSS选择器和优先级相关记录">
+                <i class="fa fa-chevron-left"></i> CSS选择器和优先级相关记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="35cm_annanali" />
+          <p class="site-author-name" itemprop="name">35cm_annanali</p>
+           
+              <p class="site-description motion-element" itemprop="description">一天捕鱼四天晒网的咸鱼离。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Annanali" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5996058516" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">35cm_annanali</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
