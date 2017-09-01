@@ -91,11 +91,11 @@
 <meta name="keywords" content="JavaScript面试,JavaScript原型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS原型与原型链的学习">
-<meta property="og:url" content="http://yoursite.com/2017/08/29/JS原型与原型链的学习/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/03/15/JS原型与原型链的学习/index.html">
 <meta property="og:site_name" content="努力中的Annanali">
 <meta property="og:description" content="JavaScript原型与原型链的学习总结">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-30T07:27:59.943Z">
+<meta property="og:updated_time" content="2017-09-01T15:03:25.275Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS原型与原型链的学习">
 <meta name="twitter:description" content="JavaScript原型与原型链的学习总结">
@@ -126,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/29/JS原型与原型链的学习/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/15/JS原型与原型链的学习/"/>
 
 
 
@@ -261,7 +261,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/JS原型与原型链的学习/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/15/JS原型与原型链的学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="35cm_annanali">
@@ -297,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T23:30:37+08:00">
-                2017-08-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-15T23:30:37+08:00">
+                2017-03-15
               </time>
             
 
@@ -356,7 +356,6 @@
 
       
         <p><blockquote class="blockquote-center">JavaScript原型与原型链的学习总结</blockquote><br><a id="more"></a></p>
-<p></p><p>本文的大部分理解来自以下三篇文章和相关实践。这里仅作记录，希望日后能有更深刻的理解。</p><br>最详尽的 JS 原型与原型链终极详解，没有「可能是」。（一）<br><a href="http://www.jianshu.com/p/dee9f8b14771" target="_blank" rel="external">http://www.jianshu.com/p/dee9f8b14771</a><br>最详尽的 JS 原型与原型链终极详解，没有「可能是」。（二）<br><a href="http://www.jianshu.com/p/652991a67186" target="_blank" rel="external">http://www.jianshu.com/p/652991a67186</a><br>最详尽的 JS 原型与原型链终极详解，没有「可能是」。（三）<br><a href="http://www.jianshu.com/p/a4e1e7b6f4f8" target="_blank" rel="external">http://www.jianshu.com/p/a4e1e7b6f4f8</a><p></p>
 <p>开头废话：看了几个小时的原型与原型链终于稍微有一点理解，也是蛮不容易的，必须要写一篇博客算是重温也是记录吧w。</p>
 <h4 id="一、普通对象与函数对象"><a href="#一、普通对象与函数对象" class="headerlink" title="一、普通对象与函数对象"></a>一、普通对象与函数对象</h4><p>JS中的对象分为普通对象和函数对象。<br>普通对象（以下三类）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//直接赋值的对象</span></div><div class="line"><span class="keyword">var</span> obj1 = &#123;&#125;;</div><div class="line"><span class="comment">//通过Object初始化的</span></div><div class="line"><span class="keyword">var</span> obj2 = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line"><span class="comment">//通过构造函数构造的，f1是一个函数</span></div><div class="line"><span class="keyword">var</span> obj3 = <span class="keyword">new</span> f1();</div></pre></td></tr></table></figure></p>
 <p>函数对象（以下三类）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//直接声明的一个函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"><span class="comment">//通过Function初始化的</span></div><div class="line"><span class="keyword">var</span> f2 = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'a1'</span>,<span class="string">'console.log(a1)'</span>);</div><div class="line"><span class="comment">//匿名函数赋值的</span></div><div class="line"><span class="keyword">var</span> f3 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div></pre></td></tr></table></figure></p>
@@ -379,6 +378,7 @@
 <p>这里直接重写了，相当于把<code>Person.prototype</code>变成了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="keyword">constructor</span>: Object,</div><div class="line">    getName: function() &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>使用对象直接量方式定义的对象其<code>constructor</code>指向的是根构造器<code>Object</code>，不是以前的<code>Person</code>了，故p的<code>constructor</code>也变成了<code>Object</code>。而<code>p.__proto__</code>指向的还是<code>Person.prototype</code>，故两者已经不相等了。<br>（2）原型链的形成是真正是靠__proto__而非prototype例子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> animal = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"><span class="keyword">var</span> dog = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"></div><div class="line">animal.price = <span class="number">2000</span>;</div><div class="line"><span class="comment">//改变dog的原型对象</span></div><div class="line">dog.prototype = animal;</div><div class="line"></div><div class="line"><span class="keyword">var</span> tidy = <span class="keyword">new</span> dog();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(dog.price) <span class="comment">//undefined</span></div><div class="line"><span class="built_in">console</span>.log(tidy.price) <span class="comment">// 2000</span></div></pre></td></tr></table></figure></p>
 <p>tidy的<code>__proto__</code>指向<code>dog.prototype</code>，所以可以调用赋的值。<br>而dog的<code>__proto__</code>指向<code>Function.prototype</code>，原型链中找不到price。</p>
+<p></p><p>参考资料</p><br>最详尽的 JS 原型与原型链终极详解，没有「可能是」。（一）<br><a href="http://www.jianshu.com/p/dee9f8b14771" target="_blank" rel="external">http://www.jianshu.com/p/dee9f8b14771</a><br>最详尽的 JS 原型与原型链终极详解，没有「可能是」。（二）<br><a href="http://www.jianshu.com/p/652991a67186" target="_blank" rel="external">http://www.jianshu.com/p/652991a67186</a><br>最详尽的 JS 原型与原型链终极详解，没有「可能是」。（三）<br><a href="http://www.jianshu.com/p/a4e1e7b6f4f8" target="_blank" rel="external">http://www.jianshu.com/p/a4e1e7b6f4f8</a><p></p>
 
       
     </div>
@@ -423,8 +423,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/28/CSS选择器和优先级相关记录/" rel="next" title="CSS选择器和优先级相关记录">
-                <i class="fa fa-chevron-left"></i> CSS选择器和优先级相关记录
+              <a href="/2017/02/18/JQuery总结之元素定位（选择器）/" rel="next" title="JQuery总结之元素定位（选择器）">
+                <i class="fa fa-chevron-left"></i> JQuery总结之元素定位（选择器）
               </a>
             
           </div>
