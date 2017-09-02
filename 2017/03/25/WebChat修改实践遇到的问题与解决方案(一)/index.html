@@ -1,0 +1,723 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Vue.js,Element UI," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="WebChat项目修改遇到的问题与解决方案">
+<meta name="keywords" content="Vue.js,Element UI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebChat修改实践遇到的问题与解决方案(一)">
+<meta property="og:url" content="http://yoursite.com/2017/03/25/WebChat修改实践遇到的问题与解决方案(一)/index.html">
+<meta property="og:site_name" content="努力中的Annanali">
+<meta property="og:description" content="WebChat项目修改遇到的问题与解决方案">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-02T09:02:30.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebChat修改实践遇到的问题与解决方案(一)">
+<meta name="twitter:description" content="WebChat项目修改遇到的问题与解决方案">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/25/WebChat修改实践遇到的问题与解决方案(一)/"/>
+
+
+
+
+
+  <title> WebChat修改实践遇到的问题与解决方案(一) | 努力中的Annanali </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">努力中的Annanali</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">有思念你的人在的地方  就是你的归处。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/25/WebChat修改实践遇到的问题与解决方案(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="35cm_annanali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="努力中的Annanali">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                WebChat修改实践遇到的问题与解决方案(一)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T23:32:27+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vuejs/" itemprop="url" rel="index">
+                    <span itemprop="name">Vuejs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><blockquote class="blockquote-center">WebChat项目修改遇到的问题与解决方案</blockquote><br><a id="more"></a><br>最近可以说是非常忙了，拿出了以前写的WebChat项目修改，以前是Django作为后端，Jquery和Bootstrap写前端，还是第一次接触可以说是写的非常乱七八糟，尴尬【<br>新版本打算用Vue.js和Element UI写前端【毛毛推荐的】，然后改成聊天室，后端用Koa实现，哇想想就坑爹……<br>项目写了两天遇到了以下问题，记一下方便下次别再蠢萌了【</p>
+<h4 id="一、环境搭建问题"><a href="#一、环境搭建问题" class="headerlink" title="一、环境搭建问题"></a>一、环境搭建问题</h4><p>在做项目的时候，首先遇到的就是环境问题qwq可以说是愁死我了，最后在无限谷歌和毛毛的帮助下，总算还是处理好了，这里记录一下比较重要的过程~<br>Element UI给的环境搭建过程实在是太太太复杂了，最好的办法还是去Vue的主页，方法非常妥【<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 全局安装 vue-cli</span></div><div class="line">$ npm install --global vue-cli</div><div class="line"><span class="comment"># 创建一个基于 webpack 模板的新项目</span></div><div class="line">$ vue init webpack my-project</div><div class="line"><span class="comment"># 安装依赖，走你</span></div><div class="line">$ <span class="built_in">cd</span> my-project</div><div class="line">$ npm install</div><div class="line">$ npm run dev</div></pre></td></tr></table></figure></p>
+<p>但是，尽管非常妥，我还是报了很多很多错……速度慢我忍了但是一直报错QAQ<br>后来只好安装了cnpm，报错率就大大降低了，速度也快了很多，环境就搭起来了~<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
+<p>装完Vue的环境后，还要引入Element UI。<br>首先在package.json加依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;dependencies&quot;: &#123;</div><div class="line">    &quot;element-ui&quot;: &quot;^1.0.0&quot;,</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>然后在main.js里引入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import ElementUI from &apos;element-ui&apos;</div><div class="line">import &apos;element-ui/lib/theme-default/index.css&apos;</div></pre></td></tr></table></figure></p>
+<p>最后在main.js里使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Vue.use(ElementUI)</div></pre></td></tr></table></figure></p>
+<p>妥了~</p>
+<h4 id="二、怎么开始写…"><a href="#二、怎么开始写…" class="headerlink" title="二、怎么开始写…"></a>二、怎么开始写…</h4><p>安装完了以后其实框架里给了个例子。。。然而一开始其实还没咋看懂。。。<br>最后捣鼓了一会后就看懂了~<br>主要步骤是这样：<br>1.写组件！！！<br>步骤如下：<br>（1）在src/components文件夹或者子文件夹新建xxx.vue文件，编写组件，组件要以<code>&lt;template&gt;</code>标签开头。<br>（2）在需要用到这个组件文件里的script部分使用类似<code>import vUser from &#39;./User.vue&#39;</code>这样的语句引入组件。<br>（3）然后在用到这个组件的文件里注册这个组件，类似<code>components: {vUser}</code>。<br>（4）就可以在当前组件里使用类似<code>&lt;v-user&gt;&lt;/v-user&gt;</code>这样的标签来使用组件了。<br>（5）组件套组件，生活美滋滋。<br>来个自己的例子：<br>定义一个组件：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Message.vue</span></div><div class="line">&lt;template&gt;</div><div class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"meg"</span>&gt;</div><div class="line">    &lt;span&gt;Message: &#123;&#123; message &#125;&#125;&lt;<span class="regexp">/span&gt;</span></div><div class="line"><span class="regexp">  &lt;/</span>div&gt;</div><div class="line">&lt;<span class="regexp">/template&gt;</span></div><div class="line"><span class="regexp">&lt;script&gt;</span></div><div class="line"><span class="regexp">  export default &#123;</span></div><div class="line"><span class="regexp">    props:["message"]</span></div><div class="line"><span class="regexp">  &#125;</span></div></pre></td></tr></table></figure></p>
+<p>显式地用 props选项声明它期待获得的”message”这个数据。<br>另一个组件使用这个组件：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// MessageList.vue</span></div><div class="line">&lt;template&gt;</div><div class="line">    &lt;div id=<span class="string">"message-list"</span> &gt;</div><div class="line">       <span class="comment">/*这里将meg作为数据传递给了message*/</span></div><div class="line">      &lt;v-message v-<span class="keyword">for</span>=<span class="string">"meg in messages"</span> v-bind:message=<span class="string">"meg"</span>&gt;&lt;/v-message&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;<span class="regexp">/template&gt;</span></div><div class="line"><span class="regexp">&lt;script&gt;</span></div><div class="line"><span class="regexp">  import vMessage from './</span>Message.vue<span class="string">'</span></div><div class="line"><span class="string">  export default &#123;</span></div><div class="line"><span class="string">    name: '</span>messages<span class="string">',</span></div><div class="line"><span class="string">    data () &#123;</span></div><div class="line"><span class="string">      return &#123;</span></div><div class="line"><span class="string">        messages: ["测试的啦啦啦","测试的啦啦啦啦"],</span></div><div class="line"><span class="string">      &#125;</span></div><div class="line"><span class="string">    &#125;,</span></div><div class="line"><span class="string">    components: &#123;</span></div><div class="line"><span class="string">      vMessage</span></div><div class="line"><span class="string">    &#125;</span></div><div class="line"><span class="string">  &#125;</span></div><div class="line"><span class="string">&lt;/script&gt;</span></div></pre></td></tr></table></figure></p>
+<p>2.写路由！！！<br>步骤如下：<br>打开router里的index.js文件，仿照原来的写一条= =。。。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">path: &apos;/home&apos;,   </div><div class="line">name: &apos;home&apos;,</div><div class="line">component: resolve =&gt; require([&apos;../components/chat/Home.vue&apos;], resolve)</div></pre></td></tr></table></figure></p>
+<p>这里的path是要路由的路径<br>component路径对应显示的组件。<br>3.就可以啦~</p>
+<h4 id="三、与后端发数据"><a href="#三、与后端发数据" class="headerlink" title="三、与后端发数据"></a>三、与后端发数据</h4><p>本来想引入Jquery发数据的，但是在指导下，用了vue-resource发数据。<br>使用起来特别简单，引入也不提了，发数据例子~<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.$http.post(<span class="string">'http://localhost:3000/login'</span>, &#123;<span class="string">"username"</span>:<span class="keyword">this</span>.loginForm.username, <span class="string">"password"</span>:<span class="keyword">this</span>.loginForm.pwd&#125;,&#123;<span class="string">"emulateJSON"</span> : <span class="literal">true</span>&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</div><div class="line">         <span class="keyword">this</span>.$router.push(<span class="string">'/home'</span>);</div><div class="line">         <span class="built_in">console</span>.log(response);</div><div class="line">       &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</div><div class="line">           <span class="built_in">console</span>.log(response);</div><div class="line">       &#125;);</div></pre></td></tr></table></figure></p>
+<p>第一个参数是url，第二个参数是数据，第三个参数是选项~<br>成功后会执行then，失败执行catch。</p>
+<h4 id="四、后端Koa跨域问题解决"><a href="#四、后端Koa跨域问题解决" class="headerlink" title="四、后端Koa跨域问题解决"></a>四、后端Koa跨域问题解决</h4><p>这个是在网上搜哒~<br>koa有个cors模块，引入后编写代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);  </div><div class="line"><span class="keyword">var</span> route = <span class="built_in">require</span>(<span class="string">'koa-route'</span>);  </div><div class="line"><span class="keyword">var</span> cors = <span class="built_in">require</span>(<span class="string">'koa-cors'</span>);  </div><div class="line"><span class="keyword">var</span> app = koa();  </div><div class="line">app.use(cors());</div></pre></td></tr></table></figure></p>
+<p>ok~</p>
+<p>目前暂时总结到这~希望能有更多进步吧~</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+            <a href="/tags/Element-UI/" rel="tag"># Element UI</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/15/JS原型与原型链的学习/" rel="next" title="JS原型与原型链的学习">
+                <i class="fa fa-chevron-left"></i> JS原型与原型链的学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="35cm_annanali" />
+          <p class="site-author-name" itemprop="name">35cm_annanali</p>
+           
+              <p class="site-description motion-element" itemprop="description">一天捕鱼四天晒网的咸鱼离。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Annanali" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5996058516" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">35cm_annanali</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
